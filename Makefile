@@ -32,8 +32,9 @@ SCRIPTPATH = /etc/comgt/
 SCRIPTSRC = ./scripts/
 BIN     = $(CPROG) 
 MANP	= comgt.1 sigmon.1
+CC 	= cc
 
-CFLAGS  = -c
+CFLAGS  =
 LDFLAGS =
 
 all: $(BIN)
@@ -70,10 +71,6 @@ clean:
 	-@rm -rf *~
 	-@rm -rf $(SCRIPTSRC)*~
 
-
-comgt: comgt.o
-	cc comgt.o $(LDFLAGS) -o comgt
-
-comgt.o: comgt.c comgt.h
-	cc comgt.c $(CFLAGS) 
+comgt: comgt.c
+	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ 
 
